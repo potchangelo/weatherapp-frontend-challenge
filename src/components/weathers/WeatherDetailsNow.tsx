@@ -14,5 +14,5 @@ export default function WeatherDetailsNow() {
         <div className="text-neutral-500 text-sm">MAX 26&deg;</div>
       </div>
     </div>
-  )
+  );
 }
