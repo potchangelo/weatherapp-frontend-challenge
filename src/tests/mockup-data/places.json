@@ -4,8 +4,8 @@
     "osm_id": "781138575",
     "osm_type": "way",
     "licence": "https://locationiq.com/attribution",
-    "lat": "13.74677845",
-    "lon": "100.53495403",
+    "lat": "13.7468",
+    "lon": "100.535",
     "boundingbox": [
       "13.7456078",
       "13.7479935",
@@ -33,8 +33,8 @@
     "osm_id": "1908806",
     "osm_type": "relation",
     "licence": "https://locationiq.com/attribution",
-    "lat": "14.3189468",
-    "lon": "100.5111681",
+    "lat": "14.3189",
+    "lon": "100.5112",
     "boundingbox": [
       "14.1074492",
       "14.6785056",
