@@ -1,0 +1,55 @@
+[
+  {
+    "place_id": "323557479889",
+    "osm_id": "781138575",
+    "osm_type": "way",
+    "licence": "https://locationiq.com/attribution",
+    "lat": "13.74677845",
+    "lon": "100.53495403",
+    "boundingbox": [
+      "13.7456078",
+      "13.7479935",
+      "100.5339508",
+      "100.5359243"
+    ],
+    "class": "shop",
+    "type": "mall",
+    "display_name": "Siam Paragon, Rama I Road, Siam, Pathum Wan, Bangkok, 10330, Thailand",
+    "display_place": "Siam Paragon",
+    "display_address": "Rama I Road, Siam, Pathum Wan, Bangkok, 10330, Thailand",
+    "address": {
+      "name": "Siam Paragon",
+      "road": "Rama I Road",
+      "neighbourhood": "Siam",
+      "suburb": "Pathum Wan",
+      "city": "Bangkok",
+      "postcode": "10330",
+      "country": "Thailand",
+      "country_code": "th"
+    }
+  },
+  {
+    "place_id": "321961899886",
+    "osm_id": "1908806",
+    "osm_type": "relation",
+    "licence": "https://locationiq.com/attribution",
+    "lat": "14.3189468",
+    "lon": "100.5111681",
+    "boundingbox": [
+      "14.1074492",
+      "14.6785056",
+      "100.2126196",
+      "100.8232715"
+    ],
+    "class": "place",
+    "type": "province",
+    "display_name": "Phra Nakhon Si Ayutthaya Province, Thailand",
+    "display_place": "Phra Nakhon Si Ayutthaya Province",
+    "display_address": "Thailand",
+    "address": {
+      "name": "Phra Nakhon Si Ayutthaya Province",
+      "country": "Thailand",
+      "country_code": "th"
+    }
+  }
+]
