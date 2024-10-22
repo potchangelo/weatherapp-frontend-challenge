@@ -1,27 +1,30 @@
-import { kelvinToUnit } from "@/helpers/functions";
+import { displayKelvinToUnit } from "@/helpers/functions";
+import dayjs from "dayjs";
 
 interface ComponentProps {
   place: Place;
   weather: Weather;
+  temperatureUnit?: TemperatureUnit;
 }
 
-export default function WeatherDetailsNow({ place, weather }: ComponentProps) {
+export default function WeatherDetailsNow({ place, weather, temperatureUnit = "C" }: ComponentProps) {
+  const weatherDate = dayjs.unix(weather.dt);
   return (
     <div className="bg-white border border-neutral-200 rounded-md shadow-md p-3 md:p-4">
       <h3 className="text-xl font-semibold mb-2">{place.display_name}</h3>
-      <p className="text-sm mb-1">Thursday, 22 May 2019</p>
-      <p className="text-sm mb-6">7:30 AM</p>
+      <p className="text-sm mb-1">{weatherDate.format("dddd, D MMMM YYYY")}</p>
+      <p className="text-sm mb-6">{weatherDate.format("h:mm A")}</p>
       <div className="flex flex-col items-center mb-6">
         <figure className="bg-neutral-400 rounded-full w-28 h-28 mb-3"></figure>
-        <h2 className="text-5xl font-semibold mb-1">{kelvinToUnit(weather.main.temp, "C")}&deg;C</h2>
-        <p className="text-sm">{weather.weather[0].main}</p>
+        <h2 className="text-5xl font-semibold mb-1">{displayKelvinToUnit(weather.main.temp, temperatureUnit)}</h2>
+        <p className="text-sm">{weather.weather[0].main}, {weather.weather[0].description}</p>
       </div>
       <div className="flex justify-between">
         <div className="text-neutral-500 text-sm">
-          MIN {kelvinToUnit(weather.main.temp_min, "C")}&deg;C
+          MIN {displayKelvinToUnit(weather.main.temp_min, temperatureUnit)}
         </div>
         <div className="text-neutral-500 text-sm">
-          MAX {kelvinToUnit(weather.main.temp_max, "C")}&deg;C
+          MAX {displayKelvinToUnit(weather.main.temp_max, temperatureUnit)}
         </div>
       </div>
     </div>
