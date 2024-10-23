@@ -19,6 +19,7 @@ export default function SiteSearchBoxItem({ place, selectedCoords = [], onItemCl
   return (
     <div
       className={`block p-2 ${selectedPlace ? "text-neutral-400 bg-neutral-200" : "bg-white hover:bg-neutral-100 cursor-pointer"}`}
+      role={selectedPlace ? "none" : "listitem"}
       onClick={onClick}
     >
       <div className="grid grid-cols-[20px_1fr] gap-1 items-start">

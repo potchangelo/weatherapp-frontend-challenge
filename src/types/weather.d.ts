@@ -1,8 +1,3 @@
-interface Coord {
-  lon: number;
-  lat: number;
-}
-
 interface Weather {
   coord: Coord;
   weather: {

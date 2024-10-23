@@ -27,7 +27,7 @@ export default function WeatherItems() {
       {coords.length === weathers.length && coords.map((coord, index) => {
         const weather = weathers[index];
         return (
-          <WeatherItem key={`${weather.id}_${index}`} weather={weather} urlCoord={coord} />
+          <WeatherItem key={`${weather.id}_${index}`} weather={weather} coord={coord} />
         );
       })}
     </>

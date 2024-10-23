@@ -4,16 +4,16 @@ import Link from "next/link";
 
 interface ComponentProps {
   weather: Weather;
-  urlCoord: Coord;
+  coord: Coord;
   temperatureUnit?: TemperatureUnit;
 }
 
-export default function WeatherItem({ weather, urlCoord, temperatureUnit = "C" }: ComponentProps) {
+export default function WeatherItem({ weather, coord, temperatureUnit = "C" }: ComponentProps) {
   const date = dayjs.unix(weather.dt);
   return (
     <Link
       className="bg-white border border-neutral-200 rounded-md shadow-md flex justify-between items-start px-4 py-2"
-      href={`/details/${urlCoord.lat}/${urlCoord.lon}`}
+      href={`/details/${coord.lat}/${coord.lon}`}
     >
       <div className="flex-1 mr-3">
         <h3 className="text-sm font-semibold mb-1">{weather.name}, {weather.sys.country}</h3>
