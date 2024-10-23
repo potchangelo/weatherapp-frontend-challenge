@@ -44,3 +44,8 @@ interface Weather {
   name: string;
   cod: number;
 }
+
+interface Coord {
+  lon: number;
+  lat: number;
+}

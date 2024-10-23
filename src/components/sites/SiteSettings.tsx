@@ -1,9 +1,11 @@
 "use client";
 
 import { useDropdownAPI } from "@/helpers/hooks";
+import { usePlacesStore } from "@/helpers/zustand-store";
 import { Settings } from "lucide-react";
 
 export default function SiteSettings() {
+  const removeAllPlaces = usePlacesStore(state => state.removeAllPlaces);
   const { isOpen, toggleIsOpen, ref } = useDropdownAPI();
 
   return (
@@ -32,7 +34,7 @@ export default function SiteSettings() {
           <div className="p-3">
             <h6 className="font-semibold mb-1">Reset all subscription</h6>
             <p>
-              <button>Reset data</button>
+              <button onClick={removeAllPlaces}>Reset data</button>
             </p>
           </div>
         </div>

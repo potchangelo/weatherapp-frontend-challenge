@@ -5,10 +5,9 @@ export async function GET(request: NextRequest) {
   // Get query params
   const { searchParams } = request.nextUrl;
   const queryParams = Object.fromEntries(searchParams.entries());
-  queryParams["key"] = process.env.PLACE_API_KEY ?? "";
-  queryParams["accept-language"] = "en";
+  queryParams["appId"] = process.env.WEATHER_API_KEY ?? "";
 
   // Fetch
-  const responseJson = await fetchWithQueryParams<Place[]>(process.env.PLACE_API_ENDPOINT ?? "", queryParams);
+  const responseJson = await fetchWithQueryParams<Weather[]>(process.env.WEATHER_API_ENDPOINT ?? "", queryParams);
   return NextResponse.json(responseJson);
 }
