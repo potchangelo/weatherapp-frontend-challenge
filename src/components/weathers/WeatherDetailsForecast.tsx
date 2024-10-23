@@ -11,7 +11,7 @@ export default function WeatherDetailsForecast({ items, temperatureUnit = "C" }:
   return (
     <div className="bg-white border border-neutral-200 rounded-md shadow-md p-3 md:p-4">
       <h5 className="text-neutral-500 text-sm font-semibold mb-3">24 HOURS FORECAST</h5>
-      <div className="grid grid-cols-6 gap-x-2 gap-y-3">
+      <div className="grid grid-cols-4 gap-x-2 gap-y-3">
         {items.map(item => (
           <WeatherDetailsForecastItem
             key={item.dt}

@@ -1,14 +1,9 @@
 "use client";
 
-import { WeatherItem } from "@/components/weathers"
 import { fetchWithQueryParams } from "@/fetchers/general";
 import { usePlacesStore } from "@/helpers/zustand-store";
 import { useEffect, useState } from "react";
-
-interface PlaceWeather {
-  place: Place;
-  weather: Weather;
-}
+import WeatherItem from "./WeatherItem";
 
 export default function WeatherItems() {
   const [placeWeathers, setPlaceWeathers] = useState<PlaceWeather[]>([]);
