@@ -11,7 +11,7 @@ interface PageProps {
 
 export default function DetailsPage({ params: { lat, lon } }: PageProps) {
   return (
-    <div className="max-w-4xl min-h-screen m-auto p-4 pt-20 md:p-8 md:pt-24">
+    <div className="max-w-6xl min-h-screen m-auto p-4 pt-20 md:p-8 md:pt-24">
       <WeatherDetails lat={lat} lon={lon} />
     </div>
   );

@@ -1,5 +1,6 @@
 import { displayKelvinToUnit } from "@/helpers/functions";
 import dayjs from "dayjs";
+import Image from "next/image";
 import Link from "next/link";
 
 interface ComponentProps {
@@ -19,9 +20,16 @@ export default function WeatherItem({ weather, coord, temperatureUnit = "C" }: C
         <h3 className="text-sm font-semibold mb-1">{weather.name}, {weather.sys.country}</h3>
         <p className="text-neutral-500 text-sm">{date.format("h:mm A")}</p>
       </div>
-      <div className="flex items-center flex-shrink-0 pt-2">
-        <figure className="bg-neutral-400 rounded-full inline-block w-6 h-6 mr-2"></figure>
-        <span>{displayKelvinToUnit(weather.main.temp, temperatureUnit)}</span>
+      <div className="flex items-center flex-shrink-0">
+        <figure className="rounded-full inline-block w-10 h-10">
+          <Image
+            src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+            width={40}
+            height={40}
+            alt={weather.weather[0].main}
+          />
+        </figure>
+        <span className="text-sm">{displayKelvinToUnit(weather.main.temp, temperatureUnit)}</span>
       </div>
     </Link>
   );
