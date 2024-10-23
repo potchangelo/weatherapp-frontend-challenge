@@ -1,29 +1,29 @@
-import { usePlacesStore } from "@/helpers/zustand-store";
+import { useCoordsStore } from "@/zustand-store/coords";
 import { Minus, Plus } from "lucide-react";
 
 interface ComponentProps {
-  place: Place;
+  coord: Coord;
 }
 
-export default function WeatherDetailsSubscribe({ place }: ComponentProps) {
-  const selectedPlaces = usePlacesStore(state => state.places);
-  const addPlace = usePlacesStore(state => state.addPlace);
-  const removePlace = usePlacesStore(state => state.removePlace);
+export default function WeatherDetailsSubscribe({ coord }: ComponentProps) {
+  const subscribedCoords = useCoordsStore(state => state.coords);
+  const addCoord = useCoordsStore(state => state.addCoord);
+  const removeCoord = useCoordsStore(state => state.removeCoord);
 
   function onClick() {
-    if (selectedPlace) {
-      removePlace(place);
+    if (subscribedCoord) {
+      removeCoord(coord);
     }
     else {
-      addPlace(place);
+      addCoord(coord);
     }
   }
 
-  const selectedPlace = selectedPlaces.find(p => p.lat === place.lat && p.lon === place.lon);
+  const subscribedCoord = subscribedCoords.find(c => c.lat === coord.lat && c.lon === coord.lon);
 
   return (
     <button className="text-sm" onClick={onClick}>
-      {selectedPlace ? (
+      {subscribedCoord ? (
         <>
           <Minus className="inline-block w-4 h-4" />
           <span>Unsubscribe</span>

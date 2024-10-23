@@ -1,7 +1,5 @@
-// import places from "@/tests/mockup-data/places.json";
-// import weathers from "@/tests/mockup-data/weathers.json";
-// import weatherForecasts from "@/tests/mockup-data/weather-forecasts.json";
 import { WeatherDetails } from "@/components/weathers";
+import { fetchWithQueryParams } from "@/fetchers/general";
 import { Metadata } from "next";
 
 interface PageProps {
@@ -20,10 +18,9 @@ export default function DetailsPage({ params: { lat, lon } }: PageProps) {
 }
 
 export async function generateMetadata({ params: { lat, lon } }: PageProps): Promise<Metadata> {
-  // const place = places.find(p => p.place_id === id);
-  // const title = `${place?.display_name ?? "Not found"}`;
+  const weather = await fetchWithQueryParams<Weather>(`${process.env.ROUTE_HANDLER_API_ABSOLUTE_BASE ?? ""}/api/weather`, {"lat": lat, "lon": lon });
   return {
-    title: `${lat} | WeatherApp`,
-    description: `Weather forecasting for ${lat}`,
+    title: `${weather.name}, ${weather.sys.country} | WeatherApp`,
+    description: `Weather forecasting for ${weather.name}`,
   }
 }

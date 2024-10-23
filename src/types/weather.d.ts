@@ -1,8 +1,10 @@
+interface Coord {
+  lon: number;
+  lat: number;
+}
+
 interface Weather {
-  coord: {
-    lon: number;
-    lat: number;
-  };
+  coord: Coord;
   weather: {
     id: number;
     main: string;
@@ -43,9 +45,4 @@ interface Weather {
   id: number;
   name: string;
   cod: number;
-}
-
-interface Coord {
-  lon: number;
-  lat: number;
 }

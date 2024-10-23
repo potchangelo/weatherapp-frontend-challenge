@@ -1,36 +1,34 @@
 "use client";
 
 import { fetchWithQueryParams } from "@/fetchers/general";
-import { usePlacesStore } from "@/helpers/zustand-store";
+import { useCoordsStore } from "@/zustand-store/coords";
 import { useEffect, useState } from "react";
 import WeatherItem from "./WeatherItem";
 
 export default function WeatherItems() {
-  const [placeWeathers, setPlaceWeathers] = useState<PlaceWeather[]>([]);
-  const places = usePlacesStore(state => state.places);
+  const [weathers, setWeathers] = useState<Weather[]>([]);
+  const coords = useCoordsStore(state => state.coords);
 
   async function getPlaceWeathers() {
     const weathers = await Promise.all(
-      places.map(p => (
-        fetchWithQueryParams<Weather>("/api/weather", { "lat": p.lat, "lon": p.lon })
+      coords.map(c => (
+        fetchWithQueryParams<Weather>("/api/weather", { "lat": `${c.lat}`, "lon": `${c.lon}` })
       ))
     );
-    const placeWeathers: PlaceWeather[] = places.map((place, index) => {
-      const weather = weathers[index];
-      return { place, weather }
-    });
-    setPlaceWeathers(placeWeathers);
+    setWeathers(weathers);
   }
 
   useEffect(() => {
     getPlaceWeathers();
-  }, [places]);
+  }, [coords]);
 
   return (
     <>
-      {placeWeathers.map((placeWeather, index) => {
-        const { place, weather } = placeWeather;
-        return <WeatherItem key={`${place.place_id}_${place.lat}_${place.lon}`} place={place} weather={weather} />
+      {coords.length === weathers.length && coords.map((coord, index) => {
+        const weather = weathers[index];
+        return (
+          <WeatherItem key={`${weather.id}_${index}`} weather={weather} urlCoord={coord} />
+        );
       })}
     </>
   );

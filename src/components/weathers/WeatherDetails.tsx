@@ -5,8 +5,6 @@ import WeatherDetailsForecast from "./WeatherDetailsForecast";
 import WeatherDetailsMore from "./WeatherDetailsMore";
 import WeatherDetailsNow from "./WeatherDetailsNow";
 import { fetchWithQueryParams } from "@/fetchers/general";
-import { usePlacesStore } from "@/helpers/zustand-store";
-import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import WeatherDetailsSubscribe from "./WeatherDetailsSubscribe";
@@ -17,18 +15,14 @@ interface ComponentProps {
 }
 
 export default function WeatherDetails({ lat, lon }: ComponentProps) {
-  const places = usePlacesStore(state => state.places);
-  const place = places.find(p => p.lat === lat && p.lon === lon);
   const [weather, setWeather] = useState<Weather>();
   const [weatherForecast, setWeatherForecast] = useState<WeatherForecast>();
 
   async function getPlaceWeather() {
     const [weather, weatherForecast] = await Promise.all([
-      await fetchWithQueryParams<Weather>("/api/weather", {"lat": lat, "lon": lon }),
-      await fetchWithQueryParams<WeatherForecast>("/api/weather-forecast", {"lat": lat, "lon": lon })
+      await fetchWithQueryParams<Weather>("/api/weather", { "lat": lat, "lon": lon }),
+      await fetchWithQueryParams<WeatherForecast>("/api/weather-forecast", { "lat": lat, "lon": lon })
     ])
-    console.log(weather);
-    console.log(weatherForecast);
     setWeather(weather);
     setWeatherForecast(weatherForecast);
   }
@@ -37,7 +31,9 @@ export default function WeatherDetails({ lat, lon }: ComponentProps) {
     getPlaceWeather();
   }, [lat, lon]);
 
-  if (!place) notFound();
+  if (!weather) return null;
+
+  const coord = { lat: +lat, lon: +lon };
 
   return (
     <>
@@ -49,20 +45,15 @@ export default function WeatherDetails({ lat, lon }: ComponentProps) {
           </Link>
         </div>
         <div>
-          <WeatherDetailsSubscribe place={place}  />
+          <WeatherDetailsSubscribe coord={coord} />
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
-        {weather && (
-          <>
-
-            <WeatherDetailsNow place={place} weather={weather} />
-            <div className="space-y-4">
-              <WeatherDetailsForecast items={weatherForecast?.list ?? []} />
-              <WeatherDetailsMore weather={weather} />
-            </div>
-          </>
-        )}
+        <WeatherDetailsNow weather={weather} />
+        <div className="space-y-4">
+          <WeatherDetailsForecast items={weatherForecast?.list ?? []} />
+          <WeatherDetailsMore weather={weather} />
+        </div>
       </div>
     </>
   );

@@ -2,16 +2,15 @@ import { displayKelvinToUnit } from "@/helpers/functions";
 import dayjs from "dayjs";
 
 interface ComponentProps {
-  place: Place;
   weather: Weather;
   temperatureUnit?: TemperatureUnit;
 }
 
-export default function WeatherDetailsNow({ place, weather, temperatureUnit = "C" }: ComponentProps) {
+export default function WeatherDetailsNow({ weather, temperatureUnit = "C" }: ComponentProps) {
   const weatherDate = dayjs.unix(weather.dt);
   return (
     <div className="bg-white border border-neutral-200 rounded-md shadow-md p-3 md:p-4">
-      <h3 className="text-xl font-semibold mb-2">{place.display_name}</h3>
+      <h3 className="text-xl font-semibold mb-2">{weather.name}, {weather.sys.country}</h3>
       <p className="text-sm mb-1">{weatherDate.format("dddd, D MMMM YYYY")}</p>
       <p className="text-sm mb-6">{weatherDate.format("h:mm A")}</p>
       <div className="flex flex-col items-center mb-6">

@@ -2,22 +2,27 @@
 
 import { fetchWithQueryParams } from "@/fetchers/general";
 import { useDropdownAPI } from "@/helpers/hooks";
+import { useCoordsStore } from "@/zustand-store/coords";
 import { ArrowLeft, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import SiteSearchBoxItem from "./SiteSearchBoxItem";
-import { usePlacesStore } from "@/helpers/zustand-store";
 
 export default function SiteSearchBox() {
+  // State
   const [q, setQ] = useState("");
   const [places, setPlaces] = useState<Place[]>([]);
-  const selectedPlaces = usePlacesStore(state => state.places);
-  const addPlace = usePlacesStore(state => state.addPlace);
+
+  // Zustand coord store
+  const selectedCoords = useCoordsStore(state => state.coords);
+  const addCoord = useCoordsStore(state => state.addCoord);
+
+  // Other helpers
   const { isOpen, setIsOpen, ref } = useDropdownAPI();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   async function getSearchPlaces(q: string) {
     try {
-      const responsePlaces = await fetchWithQueryParams<Place[]>("/api/search", { "q": q });
+      const responsePlaces = await fetchWithQueryParams<Place[]>("/api/place-search", { "q": q });
       setPlaces(responsePlaces);
     } catch (error) {
       console.error(error);
@@ -25,7 +30,7 @@ export default function SiteSearchBox() {
   }
 
   function onPlaceSelect(place: Place) {
-    addPlace(place);
+    addCoord({ lat: +place.lat, lon: +place.lon });
     setIsOpen(false);
     setQ("");
   }
@@ -70,7 +75,7 @@ export default function SiteSearchBox() {
               <SiteSearchBoxItem
                 key={`${index}_${place.lat}_${place.lon}`}
                 place={place}
-                selectedPlaces={selectedPlaces}
+                selectedCoords={selectedCoords}
                 onItemClick={onPlaceSelect}
               />
             ))}
