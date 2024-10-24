@@ -1,6 +1,6 @@
 "use client";
 
-import { useCoordsStore } from "@/zustand-store";
+import { useCoordsStore } from "@/zustand-store/coords";
 import { Minus, Plus } from "lucide-react";
 
 interface ComponentProps {

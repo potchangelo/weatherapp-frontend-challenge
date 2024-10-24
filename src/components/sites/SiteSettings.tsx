@@ -1,7 +1,8 @@
 "use client";
 
 import { useDropdownAPI } from "@/helpers/hooks";
-import { useCoordsStore, useSettingsStore } from "@/zustand-store";
+import { useCoordsStore } from "@/zustand-store/coords";
+import { useSettingsStore } from "@/zustand-store/settings";
 import { Settings } from "lucide-react";
 
 const temperatureUnits = [
@@ -23,11 +24,15 @@ export default function SiteSettings() {
 
   return (
     <div className="relative z-10" ref={ref}>
-      <div className={`rounded-t-md rounded-b-none flex justify-center items-center w-8 h-8 cursor-pointer ${isOpen ? "bg-neutral-800" : ""}`} onClick={toggleIsOpen}>
+      <div
+        className={`rounded-t-md rounded-b-none flex justify-center items-center w-8 h-8 cursor-pointer ${isOpen ? "bg-neutral-800" : ""}`}
+        title="Settings"
+        onClick={toggleIsOpen}
+      >
         <Settings className={`w-4 h-4 relative z-40`} color={`${isOpen ? "white" : "currentColor"}`} />
       </div>
       {isOpen && (
-        <div className="bg-white rounded-md rounded-tr-none border border-neutral-800 border-t-8 shadow-lg text-sm w-52 absolute top-[calc(100%)] right-0 z-30">
+        <div className="bg-white rounded-md rounded-tr-none border border-neutral-800 border-t-8 shadow-lg text-sm w-52 absolute top-[calc(100%)] right-0 z-30" role="menu">
           <div className="p-3 pb-0">
             <h6 className="font-semibold mb-1">Temperature unit</h6>
             {temperatureUnits.map(temperatureUnit => (

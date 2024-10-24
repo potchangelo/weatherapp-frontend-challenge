@@ -10,6 +10,7 @@ describe("WeatherDetailsSubscribe component", () => {
     expect(screen.getByText("Subscribe")).toBeDefined();
     fireEvent.click(screen.getByRole("button"));
     expect(screen.getByText("Unsubscribe")).toBeDefined();
+    fireEvent.click(screen.getByRole("button"));
+    expect(screen.getByText("Subscribe")).toBeDefined();
   });
 });
-

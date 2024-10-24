@@ -1,7 +1,7 @@
 "use client";
 
 import { useDropdownAPI } from "@/helpers/hooks";
-import { useCoordsStore } from "@/zustand-store";
+import { useCoordsStore } from "@/zustand-store/coords";
 import { ArrowLeft, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import SiteSearchBoxItem from "./SiteSearchBoxItem";

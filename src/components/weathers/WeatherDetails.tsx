@@ -1,17 +1,16 @@
 "use client";
 
-import { useSettingsStore } from "@/zustand-store";
+import { useSettingsStore } from "@/zustand-store/settings";
 import WeatherDetailsForecast from "./WeatherDetailsForecast";
 import WeatherDetailsMore from "./WeatherDetailsMore";
 import WeatherDetailsNow from "./WeatherDetailsNow";
 
 interface ComponentProps {
-  coord: Coord;
   weather: Weather;
   weatherForecast: WeatherForecast;
 }
 
-export default function WeatherDetails({ coord, weather, weatherForecast }: ComponentProps) {
+export default function WeatherDetails({ weather, weatherForecast }: ComponentProps) {
   const temperatureUnit = useSettingsStore(state => state.temperatureUnit);
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">

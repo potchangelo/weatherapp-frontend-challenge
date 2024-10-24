@@ -1,7 +1,8 @@
 "use client";
 
 import { fetchWeather } from "@/fetchers/weathers";
-import { useCoordsStore, useSettingsStore } from "@/zustand-store";
+import { useCoordsStore } from "@/zustand-store/coords";
+import { useSettingsStore } from "@/zustand-store/settings";
 import WeatherItem from "./WeatherItem";
 import useSWR from "swr";
 
