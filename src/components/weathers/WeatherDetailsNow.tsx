@@ -1,5 +1,6 @@
 import { displayKelvinToUnit } from "@/helpers/functions";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 import Image from "next/image";
 
 interface ComponentProps {
@@ -7,13 +8,15 @@ interface ComponentProps {
   temperatureUnit?: TemperatureUnit;
 }
 
+dayjs.extend(utc);
+
 export default function WeatherDetailsNow({ weather, temperatureUnit = "C" }: ComponentProps) {
-  const weatherDate = dayjs.unix(weather.dt);
+  const currentDate = dayjs().utcOffset(weather.timezone / 3600);
   return (
     <div className="bg-white border border-neutral-200 rounded-md shadow-md p-3 md:p-4">
       <h3 className="text-xl font-semibold mb-2">{weather.name}, {weather.sys.country}</h3>
-      <p className="text-sm mb-1">{weatherDate.format("dddd, D MMMM YYYY")}</p>
-      <p className="text-sm mb-6">{weatherDate.format("h:mm A")}</p>
+      <p className="text-sm mb-1">{currentDate.format("dddd, D MMMM YYYY")}</p>
+      <p className="text-sm mb-6">{currentDate.format("h:mm A")}</p>
       <div className="flex flex-col items-center mb-6">
         <figure className="rounded-full w-28 h-28">
           <Image

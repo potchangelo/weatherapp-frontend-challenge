@@ -13,4 +13,3 @@ describe("WeatherDetailsSubscribe component", () => {
   });
 });
 
-// TODO : Mock useCoordsStore

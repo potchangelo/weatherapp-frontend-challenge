@@ -20,6 +20,7 @@ export default function WeatherDetails({ lat, lon }: ComponentProps) {
   const [weatherForecast, setWeatherForecast] = useState<WeatherForecast>();
   const temperatureUnit = useSettingsStore(state => state.temperatureUnit);
 
+  // TODO : Move to page server component
   async function getPlaceWeather() {
     const [weather, weatherForecast] = await Promise.all([
       await fetchWithQueryParams<Weather>("/api/weather", { "lat": lat, "lon": lon }),
@@ -33,7 +34,7 @@ export default function WeatherDetails({ lat, lon }: ComponentProps) {
     getPlaceWeather();
   }, [lat, lon]);
 
-  if (!weather) return null;
+  if (!weather || !weatherForecast) return null;
 
   const coord = { lat: +lat, lon: +lon };
 
@@ -53,7 +54,7 @@ export default function WeatherDetails({ lat, lon }: ComponentProps) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
         <WeatherDetailsNow weather={weather} temperatureUnit={temperatureUnit} />
         <div className="space-y-4">
-          <WeatherDetailsForecast items={weatherForecast?.list ?? []} temperatureUnit={temperatureUnit} />
+          <WeatherDetailsForecast weatherForecast={weatherForecast} temperatureUnit={temperatureUnit} />
           <WeatherDetailsMore weather={weather} />
         </div>
       </div>

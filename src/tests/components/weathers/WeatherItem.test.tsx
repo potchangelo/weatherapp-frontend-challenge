@@ -10,7 +10,7 @@ describe("WeatherItem component", () => {
   test("Render with temperature unit C (default)", () => {
     render(<WeatherItem weather={weather} coord={coord} />);
     expect(screen.getByText(/Ratchathewi.+TH/i)).toBeDefined();
-    expect(screen.getByText(/^\d{1,2}:\d{1,2}\s(am|pm)$/i)).toBeDefined();
+    expect(screen.getByText(/^\d{1,2}\s\w+\s\d{4},\s\d{1,2}:\d{1,2}\s(am|pm)$/i)).toBeDefined();
     expect(screen.getByText("28 °C")).toBeDefined();
   });
 
