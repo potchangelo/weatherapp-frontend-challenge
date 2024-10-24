@@ -1,11 +1,19 @@
 "use client";
 
 import { useDropdownAPI } from "@/helpers/hooks";
-import { useCoordsStore } from "@/zustand-store/coords";
+import { useCoordsStore, useSettingsStore } from "@/zustand-store";
 import { Settings } from "lucide-react";
+
+const temperatureUnits = [
+  { title: "Celsius", value: "C" },
+  { title: "Fahrenheit", value: "F" },
+  { title: "Kelvin", value: "K" },
+]
 
 export default function SiteSettings() {
   const removeAllCoords = useCoordsStore(state => state.removeAllCoords);
+  const selectedTemperatureUnit = useSettingsStore(state => state.temperatureUnit);
+  const setTemperatureUnit = useSettingsStore(state => state.setTemperatureUnit);
   const { isOpen, setIsOpen, toggleIsOpen, ref } = useDropdownAPI();
 
   function onResetClick() {
@@ -22,21 +30,19 @@ export default function SiteSettings() {
         <div className="bg-white rounded-md rounded-tr-none border border-neutral-800 border-t-8 shadow-lg text-sm w-52 absolute top-[calc(100%)] right-0 z-30">
           <div className="p-3 pb-0">
             <h6 className="font-semibold mb-1">Temperature unit</h6>
-            <p>
-              <label>
-                <input type="radio" name="tempunit" /> Celsius
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="radio" name="tempunit" /> Fahrenheit
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="radio" name="tempunit" /> Kelvin
-              </label>
-            </p>
+            {temperatureUnits.map(temperatureUnit => (
+              <p key={temperatureUnit.value}>
+                <label>
+                  <input
+                    type="radio"
+                    name="temperatureUnit"
+                    value={temperatureUnit.value}
+                    checked={temperatureUnit.value === selectedTemperatureUnit}
+                    onChange={event => setTemperatureUnit(event.target.value as TemperatureUnit)}
+                  /> {temperatureUnit.title}
+                </label>
+              </p>
+            ))}
           </div>
           <div className="p-3">
             <h6 className="font-semibold mb-1">Reset all subscriptions</h6>

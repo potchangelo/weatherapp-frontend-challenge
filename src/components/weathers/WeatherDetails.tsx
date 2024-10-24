@@ -8,6 +8,7 @@ import { fetchWithQueryParams } from "@/fetchers/general";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import WeatherDetailsSubscribe from "./WeatherDetailsSubscribe";
+import { useSettingsStore } from "@/zustand-store";
 
 interface ComponentProps {
   lat: string;
@@ -17,6 +18,7 @@ interface ComponentProps {
 export default function WeatherDetails({ lat, lon }: ComponentProps) {
   const [weather, setWeather] = useState<Weather>();
   const [weatherForecast, setWeatherForecast] = useState<WeatherForecast>();
+  const temperatureUnit = useSettingsStore(state => state.temperatureUnit);
 
   async function getPlaceWeather() {
     const [weather, weatherForecast] = await Promise.all([
@@ -49,9 +51,9 @@ export default function WeatherDetails({ lat, lon }: ComponentProps) {
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
-        <WeatherDetailsNow weather={weather} />
+        <WeatherDetailsNow weather={weather} temperatureUnit={temperatureUnit} />
         <div className="space-y-4">
-          <WeatherDetailsForecast items={weatherForecast?.list ?? []} />
+          <WeatherDetailsForecast items={weatherForecast?.list ?? []} temperatureUnit={temperatureUnit} />
           <WeatherDetailsMore weather={weather} />
         </div>
       </div>

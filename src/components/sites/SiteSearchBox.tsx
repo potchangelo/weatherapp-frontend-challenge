@@ -2,7 +2,7 @@
 
 import { fetchWithQueryParams } from "@/fetchers/general";
 import { useDropdownAPI } from "@/helpers/hooks";
-import { useCoordsStore } from "@/zustand-store/coords";
+import { useCoordsStore } from "@/zustand-store";
 import { ArrowLeft, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import SiteSearchBoxItem from "./SiteSearchBoxItem";
