@@ -1,3 +1,5 @@
+"use client";
+
 import { useCoordsStore } from "@/zustand-store";
 import { Minus, Plus } from "lucide-react";
 

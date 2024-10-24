@@ -7,9 +7,7 @@ export default function HomePage() {
     <main className="max-w-6xl min-h-screen m-auto p-4 pt-20 md:p-8 md:pt-24">
       <h2 className="text-lg font-semibold">Subscribed places</h2>
       <p className="text-neutral-500 text-xs mb-4">Latest updated: {currentDate.format("D MMMM YYYY, h:mm A")}</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <WeatherItems />
-      </div>
+      <WeatherItems />
     </main>
   );
 }

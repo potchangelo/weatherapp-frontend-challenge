@@ -1,11 +1,11 @@
 "use client";
 
-import { fetchWithQueryParams } from "@/fetchers/general";
 import { useDropdownAPI } from "@/helpers/hooks";
 import { useCoordsStore } from "@/zustand-store";
 import { ArrowLeft, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import SiteSearchBoxItem from "./SiteSearchBoxItem";
+import { fetchPlaces } from "@/fetchers/places";
 
 export default function SiteSearchBox() {
   // State
@@ -22,7 +22,7 @@ export default function SiteSearchBox() {
 
   async function getSearchPlaces(q: string) {
     try {
-      const responsePlaces = await fetchWithQueryParams<Place[]>("/api/place-search", { "q": q });
+      const responsePlaces = await fetchPlaces(q);
       setPlaces(responsePlaces);
     } catch (error) {
       console.error(error);

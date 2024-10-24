@@ -1,36 +1,48 @@
 "use client";
 
-import { fetchWithQueryParams } from "@/fetchers/general";
+import { fetchWeather } from "@/fetchers/weathers";
 import { useCoordsStore, useSettingsStore } from "@/zustand-store";
-import { useEffect, useState } from "react";
 import WeatherItem from "./WeatherItem";
+import useSWR from "swr";
 
 export default function WeatherItems() {
-  const [weathers, setWeathers] = useState<Weather[]>([]);
   const coords = useCoordsStore(state => state.coords);
   const temperatureUnit = useSettingsStore(state => state.temperatureUnit);
+  const { data: weathers = [], isLoading, error } = useSWR(
+    ["weathers", coords],
+    () => Promise.all(coords.map(c => fetchWeather(c.lat, c.lon))),
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      refreshInterval: 0,
+    }
+  );
 
-  async function getPlaceWeathers() {
-    const weathers = await Promise.all(
-      coords.map(c => (
-        fetchWithQueryParams<Weather>("/api/weather", { "lat": `${c.lat}`, "lon": `${c.lon}` })
-      ))
+  if (isLoading) return <p className="text-sm">Loading data ...</p>;
+  if (error) {
+    return (
+      <div className="text-red-600 border border-red-600 rounded-md text-sm w-full p-3">
+        Server error, please try reload again.
+      </div>
     );
-    setWeathers(weathers);
+  }
+  if (weathers.length === 0) {
+    return (
+      <div className="border border-neutral-400 rounded-md text-sm w-full p-3">
+        Have no subscribed places. please search & select some places to be in subscribed list.
+      </div>
+    )
   }
 
-  useEffect(() => {
-    getPlaceWeathers();
-  }, [coords]);
-
   return (
-    <>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {coords.length === weathers.length && coords.map((coord, index) => {
         const weather = weathers[index];
         return (
           <WeatherItem key={`${weather.id}_${index}`} weather={weather} coord={coord} temperatureUnit={temperatureUnit} />
         );
       })}
-    </>
+    </div>
   );
 }
