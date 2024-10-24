@@ -11,7 +11,8 @@ describe("WeatherDetailsNow component", () => {
     expect(screen.getByText(/^\w+day,\s\d{1,2}\s\w+\s\d{4}$/)).toBeDefined();
     expect(screen.getByText(/^\d{1,2}:\d{1,2}\s(am|pm)$/i)).toBeDefined();
     expect(screen.getByText("26 °C")).toBeDefined();
-    expect(screen.getByText(/Rain.+moderate\srain/i)).toBeDefined();
+    expect(screen.getByText("Rain")).toBeDefined();
+    expect(screen.getByText(/moderate\srain/i)).toBeDefined();
     expect(screen.getByText("MIN 26 °C")).toBeDefined();
     expect(screen.getByText("MAX 28 °C")).toBeDefined();
   });
@@ -36,7 +37,8 @@ describe("WeatherDetailsNow component", () => {
     expect(screen.getByText(/^\w+day,\s\d{1,2}\s\w+\s\d{4}$/)).toBeDefined();
     expect(screen.getByText(/^\d{1,2}:\d{1,2}\s(am|pm)$/i)).toBeDefined();
     expect(screen.getByText("28 °C")).toBeDefined();
-    expect(screen.getByText(/Clouds.+overcast\sclouds/i)).toBeDefined();
+    expect(screen.getByText("Clouds")).toBeDefined();
+    expect(screen.getByText(/overcast\sclouds/i)).toBeDefined();
     expect(screen.getByText("MIN 28 °C")).toBeDefined();
     expect(screen.getByText("MAX 28 °C")).toBeDefined();
   });

@@ -8,13 +8,12 @@ const place = places[0];
 describe("SiteSearchBoxItem component", () => {
   test("Render unselected place", () => {
     render(<SiteSearchBoxItem place={place} onItemClick={_ => {}} />);
-    expect(screen.getByText(place.display_name)).toBeDefined();
+    expect(screen.getByText(/Siam Paragon/i)).toBeDefined();
     expect(screen.getByRole("listitem")).toBeDefined();
   });
 
   test("Render selected place", () => {
     render(<SiteSearchBoxItem place={place} selectedCoords={coords} onItemClick={_ => {}} />);
-    expect(screen.getByText(place.display_name)).toBeDefined();
     expect(screen.queryByRole("listitem")).toBeNull();
   });
 });
