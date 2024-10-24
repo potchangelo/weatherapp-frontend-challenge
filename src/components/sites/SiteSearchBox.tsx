@@ -53,7 +53,7 @@ export default function SiteSearchBox() {
   return (
     <div className={`relative z-20 ${isOpen ? "-ml-10 sm:ml-0 -mr-10 sm:mr-0" : ""}`} ref={ref}>
       <input
-        className={`flex w-full h-8 rounded-md border border-neutral-600 focus:border-neutral-800 focus:outline focus:outline-2 focus:outline-neutral-800 text-sm pl-3 pr-8 py-2 relative z-40 ${isOpen ? "pl-8" : ""}`}
+        className={`flex w-full h-8 rounded-md border border-neutral-600 focus:border-blue-500 focus:outline focus:outline-2 focus:outline-blue-500 text-sm pl-3 pr-8 py-2 relative z-40 ${isOpen ? "pl-8" : ""}`}
         type="search"
         value={q}
         onChange={event => setQ(event.target.value)}
@@ -69,7 +69,7 @@ export default function SiteSearchBox() {
         <Search className="w-4 h-4" />
       </div>
       {isOpen && places.length > 0 && (
-        <div className="bg-white rounded-md border border-neutral-800 shadow-lg absolute top-0 left-0 right-0 pt-8 z-30">
+        <div className="bg-white rounded-t-md border border-blue-500 shadow-lg absolute top-0 left-0 right-0 pt-8 z-30">
           <div className="max-h-64 overflow-y-auto">
             {places.map((place, index) => (
               <SiteSearchBoxItem

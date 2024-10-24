@@ -19,10 +19,10 @@ export default async function DetailsPage({ params: { lat, lon } }: PageProps) {
   ]);
   return (
     <div className="max-w-6xl min-h-screen m-auto p-4 pt-20 md:p-8 md:pt-24">
-      <div className="flex justify-between mb-2">
+      <div className="flex justify-between items-end mb-2">
         <div>
-          <Link className="text-sm" href="/">
-            <ChevronLeft className="inline-block w-4 h-4" />
+          <Link className="text-xs inline-flex items-center" href="/">
+            <ChevronLeft className="inline-block w-4 h-4 mr-1" />
             <span>Back to homepage</span>
           </Link>
         </div>
@@ -30,7 +30,7 @@ export default async function DetailsPage({ params: { lat, lon } }: PageProps) {
           <WeatherDetailsSubscribe coord={coord} />
         </div>
       </div>
-      <WeatherDetails coord={coord} weather={weather} weatherForecast={weatherForecast} />
+      <WeatherDetails weather={weather} weatherForecast={weatherForecast} />
     </div>
   );
 }

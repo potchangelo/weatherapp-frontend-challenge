@@ -16,7 +16,7 @@ export default function WeatherItem({ weather, coord, temperatureUnit = "C" }: C
   const currentDate = dayjs().utcOffset(weather.timezone / 3600);
   return (
     <Link
-      className="bg-white border border-neutral-200 rounded-md shadow-md flex justify-between items-start px-3 py-2"
+      className="bg-white border border-neutral-200 hover:border-blue-500 rounded-md shadow-md hover:shadow-blue-200 flex justify-between items-start px-3 py-2 transition-shadow"
       href={`/details/${coord.lat}/${coord.lon}`}
     >
       <div className="flex-1 mr-3">
