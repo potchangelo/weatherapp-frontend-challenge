@@ -5,10 +5,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "openweathermap.org",
-        pathname: "/img/wn/**"
-      }
-    ]
-  }
+        pathname: "/img/wn/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

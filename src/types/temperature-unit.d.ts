@@ -1,1 +1,1 @@
-type TemperatureUnit = "C"|"F"|"K";
+type TemperatureUnit = "C" | "F" | "K";

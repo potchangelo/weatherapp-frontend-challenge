@@ -44,8 +44,7 @@ export default function SiteSearchBox() {
       timeoutRef.current = setTimeout(() => {
         getSearchPlaces(q);
       }, 500);
-    }
-    else {
+    } else {
       setPlaces([]);
     }
   }, [q]);
@@ -61,7 +60,10 @@ export default function SiteSearchBox() {
         placeholder="search"
       />
       {isOpen && (
-        <div className="flex justify-center items-center w-8 h-8 absolute top-0 left-0 z-40 cursor-pointer" onClick={_ => setIsOpen(false)}>
+        <div
+          className="flex justify-center items-center w-8 h-8 absolute top-0 left-0 z-40 cursor-pointer"
+          onClick={_ => setIsOpen(false)}
+        >
           <ArrowLeft className="w-4 h-4" />
         </div>
       )}

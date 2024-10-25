@@ -9,18 +9,19 @@ import useSWR from "swr";
 export default function WeatherItems() {
   const coords = useCoordsStore(state => state.coords);
   const temperatureUnit = useSettingsStore(state => state.temperatureUnit);
-  const { data: weathers = [], isLoading, error } = useSWR(
-    ["weathers", coords],
-    () => Promise.all(coords.map(c => fetchWeather(c.lat, c.lon))),
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-      refreshInterval: 0,
-    }
-  );
+  const {
+    data: weathers = [],
+    isLoading,
+    error,
+  } = useSWR(["weathers", coords], () => Promise.all(coords.map(c => fetchWeather(c.lat, c.lon))), {
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    refreshInterval: 0,
+    keepPreviousData: true,
+  });
 
-  if (isLoading) return <p className="text-sm">Loading data ...</p>;
+  if (isLoading && weathers.length === 0) return <p className="text-sm">Loading data ...</p>;
   if (error) {
     return (
       <div className="text-red-600 border border-red-600 rounded-md text-sm w-full p-3">
@@ -33,15 +34,21 @@ export default function WeatherItems() {
       <div className="border border-neutral-400 rounded-md text-sm w-full p-3">
         Have no subscribed places. please search & select some places to be in subscribed list.
       </div>
-    )
+    );
   }
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {coords.length === weathers.length && coords.map((coord, index) => {
+      {coords.map((coord, index) => {
+        if (index >= weathers.length) return null;
         const weather = weathers[index];
         return (
-          <WeatherItem key={`${weather.id}_${index}`} weather={weather} coord={coord} temperatureUnit={temperatureUnit} />
+          <WeatherItem
+            key={`${weather.id}_${index}`}
+            weather={weather}
+            coord={coord}
+            temperatureUnit={temperatureUnit}
+          />
         );
       })}
     </div>

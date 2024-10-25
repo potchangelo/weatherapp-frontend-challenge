@@ -20,7 +20,9 @@ export default function WeatherItem({ weather, coord, temperatureUnit = "C" }: C
       href={`/details/${coord.lat}/${coord.lon}`}
     >
       <div className="flex-1 mr-3">
-        <h3 className="text-sm font-semibold mb-1">{weather.name}, {weather.sys.country}</h3>
+        <h3 className="text-sm font-semibold mb-1">
+          {weather.name}, {weather.sys.country}
+        </h3>
         <p className="text-neutral-500 text-xs">{currentDate.format("D MMMM YYYY, h:mm A")}</p>
       </div>
       <div className="flex items-center flex-shrink-0">

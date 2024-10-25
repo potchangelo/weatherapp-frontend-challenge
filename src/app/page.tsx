@@ -1,4 +1,4 @@
-import { WeatherItems } from "@/components/weathers"
+import { WeatherItems } from "@/components/weathers";
 import dayjs from "dayjs";
 
 export default function HomePage() {

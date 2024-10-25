@@ -20,15 +20,15 @@ describe("SiteSettings component", () => {
     fireEvent.click(getSettingsButton());
 
     // Change to F
-    fireEvent.click(screen.getByRole("radio", { name: "Fahrenheit" }))
+    fireEvent.click(screen.getByRole("radio", { name: "Fahrenheit" }));
     expect(screen.getByRole("radio", { name: "Fahrenheit", checked: true })).toBeDefined();
 
     // Change to K
-    fireEvent.click(screen.getByRole("radio", { name: "Kelvin" }))
+    fireEvent.click(screen.getByRole("radio", { name: "Kelvin" }));
     expect(screen.getByRole("radio", { name: "Kelvin", checked: true })).toBeDefined();
 
     // Change to C
-    fireEvent.click(screen.getByRole("radio", { name: "Celsius" }))
+    fireEvent.click(screen.getByRole("radio", { name: "Celsius" }));
     expect(screen.getByRole("radio", { name: "Celsius", checked: true })).toBeDefined();
     expect(screen.getByRole("radio", { name: "Fahrenheit", checked: false })).toBeDefined();
     expect(screen.getByRole("radio", { name: "Kelvin", checked: false })).toBeDefined();

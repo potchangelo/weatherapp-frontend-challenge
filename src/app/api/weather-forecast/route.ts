@@ -9,6 +9,9 @@ export async function GET(request: NextRequest) {
   queryParams["cnt"] = "8";
 
   // Fetch
-  const responseJson = await fetchWithQueryParams<WeatherForecast>(process.env.WEATHER_FORECAST_API_ENDPOINT ?? "", queryParams);
+  const responseJson = await fetchWithQueryParams<WeatherForecast>(
+    process.env.WEATHER_FORECAST_API_ENDPOINT ?? "",
+    queryParams
+  );
   return NextResponse.json(responseJson);
 }

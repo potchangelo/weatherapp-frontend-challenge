@@ -10,12 +10,12 @@ export function useDropdownAPI() {
     if (ref.current && !ref.current.contains(event.target as Node)) {
       setIsOpen(false);
     }
-  };
+  }
 
   useEffect(() => {
-    document.addEventListener('click', onOutsideClick);
+    document.addEventListener("click", onOutsideClick);
     return () => {
-      document.removeEventListener('click', onOutsideClick);
+      document.removeEventListener("click", onOutsideClick);
     };
   }, []);
 

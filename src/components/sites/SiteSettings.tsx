@@ -9,7 +9,7 @@ const temperatureUnits = [
   { title: "Celsius", value: "C" },
   { title: "Fahrenheit", value: "F" },
   { title: "Kelvin", value: "K" },
-]
+];
 
 export default function SiteSettings() {
   const removeAllCoords = useCoordsStore(state => state.removeAllCoords);
@@ -32,7 +32,10 @@ export default function SiteSettings() {
         <Settings className={`w-4 h-4 relative z-40`} color={`${isOpen ? "white" : "currentColor"}`} />
       </div>
       {isOpen && (
-        <div className="bg-white rounded-md rounded-tr-none border border-neutral-800 border-t-8 shadow-lg text-sm w-52 absolute top-[calc(100%)] right-0 z-30" role="menu">
+        <div
+          className="bg-white rounded-md rounded-tr-none border border-neutral-800 border-t-8 shadow-lg text-sm w-52 absolute top-[calc(100%)] right-0 z-30"
+          role="menu"
+        >
           <div className="p-3 pb-0">
             <h6 className="font-semibold mb-1">Temperature unit</h6>
             {temperatureUnits.map(temperatureUnit => (
@@ -44,7 +47,8 @@ export default function SiteSettings() {
                     value={temperatureUnit.value}
                     checked={temperatureUnit.value === selectedTemperatureUnit}
                     onChange={event => setTemperatureUnit(event.target.value as TemperatureUnit)}
-                  /> {temperatureUnit.title}
+                  />{" "}
+                  {temperatureUnit.title}
                 </label>
               </p>
             ))}

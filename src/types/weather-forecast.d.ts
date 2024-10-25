@@ -28,7 +28,7 @@ interface WeatherForecastListItem {
   visibility: number;
   pop: number;
   rain?: {
-    '3h': number;
+    "3h": number;
   };
   sys: {
     pod: string;

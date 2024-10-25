@@ -11,7 +11,7 @@ describe("WeatherDetailsMore component", () => {
   });
 
   test("Render with incompleted data", () => {
-    const weatherWithoutRain = {...weather};
+    const weatherWithoutRain = { ...weather };
     delete weatherWithoutRain.rain;
     render(<WeatherDetailsMore weather={weatherWithoutRain} />);
     expect(screen.getAllByRole("listitem").length).toBe(3);

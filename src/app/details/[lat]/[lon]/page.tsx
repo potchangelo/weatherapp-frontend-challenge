@@ -12,10 +12,10 @@ interface PageProps {
 }
 
 export default async function DetailsPage({ params: { lat, lon } }: PageProps) {
-  const coord = { lat: +lat, lon: +lon }
+  const coord = { lat: +lat, lon: +lon };
   const [weather, weatherForecast] = await Promise.all([
     await fetchWeather(lat, lon),
-    await fetchWeatherForecast(lat, lon)
+    await fetchWeatherForecast(lat, lon),
   ]);
   return (
     <div className="max-w-6xl min-h-screen m-auto p-4 pt-20 md:p-8 md:pt-24">
@@ -41,8 +41,8 @@ export async function generateMetadata({ params: { lat, lon } }: PageProps): Pro
     weather = await fetchWeather(lat, lon);
   } catch (error) {
     return {
-      title: "Not found | WeatherApp"
-    }
+      title: "Not found | WeatherApp",
+    };
   }
   return {
     title: `${weather.name}, ${weather.sys.country} | WeatherApp`,

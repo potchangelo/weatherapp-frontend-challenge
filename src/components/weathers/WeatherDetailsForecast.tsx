@@ -19,12 +19,7 @@ export default function WeatherDetailsForecast({ weatherForecast, temperatureUni
       <h5 className="text-neutral-500 text-sm font-semibold mb-4">24 HOURS FORECAST</h5>
       <div className="grid grid-cols-3 sm:grid-cols-4 gap-x-3 gap-y-5">
         {items.map(item => (
-          <WeatherDetailsForecastItem
-            key={item.dt}
-            item={item}
-            timezone={timezone}
-            temperatureUnit={temperatureUnit}
-          />
+          <WeatherDetailsForecastItem key={item.dt} item={item} timezone={timezone} temperatureUnit={temperatureUnit} />
         ))}
       </div>
     </div>

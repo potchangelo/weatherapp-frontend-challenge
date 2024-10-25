@@ -23,7 +23,7 @@ interface Weather {
     deg: number;
   };
   rain?: {
-    '1h': number;
+    "1h": number;
   };
   clouds: {
     all: number;

@@ -7,9 +7,7 @@ interface ItemComponentProps {
 }
 
 export default function SiteSearchBoxItem({ place, selectedCoords = [], onItemClick }: ItemComponentProps) {
-  const selectedPlace = selectedCoords.find(c => (
-    c.lat === +place.lat && c.lon === +place.lon
-  ));
+  const selectedPlace = selectedCoords.find(c => c.lat === +place.lat && c.lon === +place.lon);
 
   function onClick() {
     if (selectedPlace) return;
@@ -24,15 +22,9 @@ export default function SiteSearchBoxItem({ place, selectedCoords = [], onItemCl
     >
       <div className="grid grid-cols-[20px_1fr] gap-1 items-start">
         <div className="flex justify-center items-center">
-          {selectedPlace ? (
-            <MapPinCheck className="w-4 h-4" />
-          ) : (
-            <MapPinPlus className="w-4 h-4" />
-          )}
+          {selectedPlace ? <MapPinCheck className="w-4 h-4" /> : <MapPinPlus className="w-4 h-4" />}
         </div>
-        <div className="text-sm">
-          {place.display_name}
-        </div>
+        <div className="text-sm">{place.display_name}</div>
       </div>
     </div>
   );
