@@ -1,4 +1,4 @@
-# Instruction of WeatherApp Frontend Challenge
+# Instructions of WeatherApp Frontend Challenge
 
 ## Setup
 
@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-## testing
+## Testing
 
 ```
 npm run test
