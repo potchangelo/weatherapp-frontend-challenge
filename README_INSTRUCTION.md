@@ -1,31 +1,28 @@
 # Instruction of WeatherApp Frontend Challenge
 
-
 ## Setup
 
 1. Clone this project.
 2. Open project folder in VSCode or any IDE.
 3. On the root of project folder, create `.env.local` file.
 4. Copy code from `.env.local.sample` file into `.env.local` file.
-5. Change value of environment variables `PLACE_API_KEY` and `WEATHER_API_KEY` to actual API keys, that I have sent via challenge submission email (or can use your own if you have).
-6. Open terminal and run command below.
+5. Change value of environment variables `PLACE_API_KEY` and `WEATHER_API_KEY` to actual API keys, that I have sent via email (or can use your own if you have).
+6. Open terminal on this project, and run command below.
 
 ```
 npm install
 ```
 
+7. After completed setup steps, you can run any tasks below.
+
 
 ## Development
-
-After completed setup steps above, run command below.
 
 ```
 npm run dev
 ```
 
 ## testing
-
-After completed setup steps above, run command below.
 
 ```
 npm run test
@@ -34,9 +31,14 @@ npm run test
 
 ## Production build & start
 
-After completed setup steps above, run command below.
-
 ```
 npm run build
 npm run start
 ```
+
+
+## Snapshots
+
+![Snapshot 1](https://raw.githubusercontent.com/potchangelo/weatherapp-frontend-challenge/main/snapshots/snapshot-1.jpg "Snapshot 1")
+
+![Snapshot 2](https://raw.githubusercontent.com/potchangelo/weatherapp-frontend-challenge/main/snapshots/snapshot-2.jpg "Snapshot 2")
